@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
         password: _passwordController.text.trim(),
       );
 
-      // 🔥 Kullanıcının ismini Firebase profil bilgisine ekle (isteğe bağlı)
+      
       await userCredential.user?.updateDisplayName(_nameController.text.trim());
 
       setState(() {
@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 80),
                 const Icon(Icons.person_add, size: 80),
                 const SizedBox(height: 32),
-                _buildTextField(_nameController, 'İsim', false), // 👈🏻 Yeni İsim TextField
+                _buildTextField(_nameController, 'İsim', false), 
                 const SizedBox(height: 16),
                 _buildTextField(_emailController, 'Email', false),
                 const SizedBox(height: 16),

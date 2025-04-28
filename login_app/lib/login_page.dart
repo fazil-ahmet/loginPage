@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'home_page.dart'; 
-import 'register_page.dart'; 
+import 'package:shared_preferences/shared_preferences.dart';
+import 'home_page.dart';
+import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -21,9 +22,16 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+
+      final user = FirebaseAuth.instance.currentUser;
+      final token = await user?.getIdToken();
+
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString('jwt_token', token ?? '');
+
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()), 
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } catch (e) {
       setState(() {
@@ -35,14 +43,14 @@ class _LoginPageState extends State<LoginPage> {
   void _navigateToRegister() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const RegisterPage()), 
+      MaterialPageRoute(builder: (context) => const RegisterPage()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(), 
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Giriş Yap'),
