@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'home_page.dart'; // Ana sayfa import
-import 'register_page.dart'; // Kayıt sayfası import
+import 'home_page.dart'; 
+import 'register_page.dart'; 
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()), // 🔥 Başarılı girişte HomePage
+        MaterialPageRoute(builder: (context) => const HomePage()), 
       );
     } catch (e) {
       setState(() {
@@ -35,14 +35,14 @@ class _LoginPageState extends State<LoginPage> {
   void _navigateToRegister() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const RegisterPage()), // 🔥 Kayıt sayfasına geçiş
+      MaterialPageRoute(builder: (context) => const RegisterPage()), 
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(), // 🔥 Boş yere tıklayınca klavye kapanacak
+      onTap: () => FocusScope.of(context).unfocus(), 
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Giriş Yap'),
